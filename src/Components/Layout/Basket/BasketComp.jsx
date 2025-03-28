@@ -1,7 +1,7 @@
-import { Button } from "@mui/material";
-import { ShoppingBag, Trash } from "lucide-react";
+import { Badge, Button, IconButton } from "@mui/material";
+import { CircleX, EyeClosed, ShoppingBag, Trash } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
-import { clearBasket } from "../../../Features/BasketSlice";
+import { clearBasket, removeBasketItem } from "../../../Features/BasketSlice";
 
 export default function BasketComp() {
     const dispatch = useDispatch();
@@ -9,23 +9,35 @@ export default function BasketComp() {
 
     return (
         <div className="w-full h-full">
-            <div className="flex flex-col justify-center w-full h-full">
+            <div className="flex flex-col justify-center w-full h-full ">
                 {
                     addedItems.length > 0 ? (
                         <>
-                            <div className="flex flex-col items-center justify-center w-full max-h-120 overflow-y-auto">
-                                {console.log(addedItems)}
+                            <div className=" w-full overflow-y-auto">
                                 {
 
                                     addedItems?.map((m, index) => (
-                                        <div key={index} className="grid grid-cols-1 sm:grid-cols-4 gap-2 w-full p-3 items-center">
-                                            <img src={m.productData.productMainImage} alt={m.productName} className="w-20 h-20 object-cover rounded-md mx-auto" />
-                                            <span className="text-md font-bold col-span-2 mx-auto">
-                                                {m.productName}
+                                        <div key={index} className="w-full  shadow-sm shadow-blue-400/30 relative mt-3">
+                                            <div className="absolute right-0">
+                                            <span className="rounded-full bg-blue-600 px-2 py-[2px]  text-white text-xs text-center  ">
+                                                {m.Count}
                                             </span>
-                                            <span className="text-md font-bold mx-auto">
-                                                {m.marketPrice.toFixed(2)} TL
-                                            </span>
+                                                <IconButton color="error" onClick={() => dispatch(removeBasketItem(m))}>
+                                                    <CircleX></CircleX>
+                                                </IconButton>
+
+
+                                            </div>
+                                            <div key={index} className="grid grid-cols-1 sm:grid-cols-4 gap-2 w-full p-3 items-center">
+                                                <img src={m.productData.productMainImage} alt={m.productName} className="w-20 h-20 object-cover rounded-md mx-auto" />
+
+                                                <span className="text-md font-bold col-span-2 mx-auto">
+                                                    {m.productName}
+                                                </span>
+                                                <span className="text-md font-bold mx-auto">
+                                                    {m.marketPrice.toFixed(2)} TL
+                                                </span>
+                                            </div>
                                         </div>
                                     ))
                                 }
@@ -34,10 +46,10 @@ export default function BasketComp() {
                             <div className="mt-auto">
                                 <div className="flex justify-between items-center w-full p-3">
                                     <span className="text-md font-bold">
-                                        Total
+                                        Toplam
                                     </span>
                                     <span className="text-md font-bold">
-                                        {addedItems.reduce((acc, item) => acc + item.marketPrice, 0)?.toFixed(2)} TL
+                                        {addedItems.reduce((acc, item) => acc + (item.marketPrice * item.Count), 0)?.toFixed(2)} TL
                                     </span>
                                 </div>
                                 <div className="flex justify-center items-center flex-wrap w-full p-3 gap-2">
@@ -58,10 +70,10 @@ export default function BasketComp() {
                         (
                             <div className="flex flex-col items-center justify-center w-full h-full">
                                 <span className="text-3xl font-bold">
-                                   Sepetiniz Boş
+                                    Sepetiniz Boş
                                 </span>
                                 <span className="text-lg font-semibold mt-3">
-                                   Sepetinize Ürünler Ekleyiniz
+                                    Sepetinize Ürünler Ekleyiniz
                                 </span>
                             </div>
                         )

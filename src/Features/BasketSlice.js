@@ -8,16 +8,27 @@ const basketSlice = createSlice({
     }, reducers: {
         addBasketItem: (state, action) => {
             state.isBasketOpen = true;
-            state.basketItems.push(action.payload);
+            const currentBasketItem = state.basketItems.find((f) => f.productID == action.payload.productID);
+
+            if (currentBasketItem) {
+                currentBasketItem.Count += 1;
+                return;
+            }
+
+            state.basketItems.push({
+                ...action.payload,
+                Count: 1
+            });
         },
         //Arayüzde kullanmadım fakat metodunu hazırladım.
         removeBasketItem: (state, action) => {
-            state.basketItems = state.basketItems.filter(item => item.id !== action.payload.id);
+            console.log(action)
+            state.basketItems = state.basketItems.filter(item => item.productID !== action.payload.productID);
         },
         clearBasket: (state) => {
             state.basketItems = [];
         },
-        toggleBasket: (state,action) => {
+        toggleBasket: (state, action) => {
             state.isBasketOpen = action?.payload;
         }
     }

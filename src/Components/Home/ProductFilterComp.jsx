@@ -1,36 +1,77 @@
 import { Box, TextField } from "@mui/material";
 import SelectBoxComp from "../Common/SelectBox/SelectBoxComp";
-import { useRef } from "react";
-import { ArrowDown, Camera } from 'lucide-solid';
+import { useCallback, useEffect, useRef, useState } from "react";
+import { ChevronsDown } from "lucide-react";
+import { getData } from "../../Api/ApiService";
+import { DATA_LENGTH_PER_PAGE, GET_CATEGORY_URL, PRODUCT_DATA_LENGTH } from "../../Commons/Constants/Constants";
+import { useDispatch } from "react-redux";
+import { getProductList, setFilterModel, setProductDataCount } from "../../Features/ProductSlice";
 
-export default function ProductFilterComp() {
-    const orderList = useRef([
-        { id: 1, name: 'En Yeniler' },
-        { id: 2, name: 'En Eskiler' },
-        { id: 3, name: 'En Pahalılar' },
-        { id: 4, name: 'En Ucuzlar' },
-    ]);
+export default function ProductFilterComp({ setLoading }) {
+    const dispatch = useDispatch();
+
+    const [categoryList, setCategoryList] = useState([]);
+
+    //Componentte herhangi bir state kullanılır ve değişirse tekrar tekrar render edilmesini
+    //istemediğim için useCallback kullandım. (Güvenlik amaçlı)
+    const fetchCategory = useCallback(() => {
+        getData(GET_CATEGORY_URL).then((res) => {
+            setCategoryList(res.data?.map((m) => (
+                {
+                    Id: m.productCategoryID,
+                    Text: m.categoryName
+                }
+            )));
+        })
+    });
+
+    useEffect(() => {
+        fetchCategory();
+    }, []);
+
+
+    const changeCategory = (categoryId) => {
+        //CategoryId Seçildiyse Paginasyonu Devre Dışı Bıraktım 
+        //Yok seçili değilse ürünler sayfalama yapısını tabi tutuluyor
+        //Eğer apiden canlı toplam count dönseydi kategorilerde sayfalamaya tabi tutulurdu.
+        //setProductDataCount fonksiyonu ile sayfa sayısı hesaplanıyor kategori seçildiyse varsayılan 1 sayfa olması için
+        //bir atanıyor.
+        var filter = { currentPage: 1, productCategoryID: categoryId, dataCountPerPage: categoryId != 0 ? 0 : DATA_LENGTH_PER_PAGE };
+        dispatch(setFilterModel(filter));
+        setLoading(true);
+        dispatch(getProductList()).then(() => {
+            setLoading(false);
+            if (categoryId == 0) dispatch(setProductDataCount(PRODUCT_DATA_LENGTH));
+            else dispatch(setProductDataCount(1))
+        });
+    }
     return (
-        <Box sx={{ paddingX: 17, paddingTop: 5, justifyContent: 'space-between', display: 'flex' }}>
-            <div>
-                <TextField variant="outlined" size="small" label="Ürün Ara" sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}>
-                </TextField>
-            </div>
-            <div>
-                <SelectBoxComp className="py-2 px-6 pr-10 rounded-lg
-            appearance-none font-bold shadow-lg shadow-yellow-400/50
-             !text-themeTextColor focus:outline-none focus:ring-4 focus:ring-themeSecondaryColor 
+        <div className="px-5 py-5 rounded-md border-2 border-gray-50 bg-white mt-3 mx-3 ">
+            <SelectBoxComp
+                width=" w-[200px] lg:w-[300px] xl:w-[400px]"
+                className="
+             w-[200px] lg:w-[300px] xl:w-[400px]
+            py-2 px-6 pr-10 rounded-lg
+            appearance-none font-bold shadow-lg shadow-blue-400/50
+            ring-2 ring-blue-50
+             focus:outline-none focus:ring-4 focus:ring-blue-100 
              focus:border-themeSecondaryColor"
+                onChange={(value) => changeCategory(value)}
+                optionList={[
+                    {
+                        Id: 0,
+                        Text: 'Lütfen Kategori Seçiniz'
+                    },
+                    ...categoryList
+                ]}
+                triggerOnMount={false}
+                dropDownIcon={
+                    <ChevronsDown className="absolute top-2 right-2  pointer-events-none" />
+                }
+            >
 
-                    optionList={orderList.current}
-                    triggerOnMount={false}
-                    dropDownIcon={
-                        <ArrowDown className="absolute top-2 right-2  text-gray-500 pointer-events-none" />
-                    }
-                >
+            </SelectBoxComp>
+        </div>
 
-                </SelectBoxComp>
-            </div>
-        </Box>
     )
 }

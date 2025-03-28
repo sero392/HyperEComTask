@@ -25,7 +25,6 @@ export default function SelectBoxComp({
 
   const handleChange = (event) => {
     const value = event.target.value;
-    console.log(value);
     setSelectedValue(value);
     onChange(value);
   };
@@ -39,10 +38,11 @@ export default function SelectBoxComp({
       >
         {optionList?.map((m, ix) => (
           <option key={ix} value={m.Id}>
-            {m.name}
+            {m.Text}
           </option>
         ))}
       </select>
+      {dropDownIcon}
     </div>
   )
 }

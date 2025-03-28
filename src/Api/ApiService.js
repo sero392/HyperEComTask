@@ -29,9 +29,7 @@ const api = axios.create({
     const apiResult = api
       .post(endpoint, data)
       .then((response) => {
-        
         response?.data?.success ? null : console.error(response?.data?.message);
-
         return response?.data || response;
       })
       .catch((err) => {

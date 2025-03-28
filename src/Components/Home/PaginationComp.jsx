@@ -1,27 +1,44 @@
 import { Pagination } from "@mui/material";
+import React from "react";
 import { useEffect, useState } from "react";
 import { DATA_LENGTH_PER_PAGE } from "../../Commons/Constants/Constants";
-import { useDispatch } from "react-redux";
-import { getProductList } from "../../Features/ProductSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { getProductList, setFilterModel } from "../../Features/ProductSlice";
 
-export default function PaginationComp({ className,setLoading }) {
+const PaginationComp = ({ className, setLoading }) => {
     const dispatch = useDispatch();
+    const productDataCount = useSelector((state) => state.product.productDataCount);
+    const filterModel = useSelector((state) => state.product.filterModel);
     const [pageSize, setPageSize] = useState(0);
 
-    const length = 440; //Api count bulamadım o yüzden bir defa getirip count hesaplattım sabit bir şekilde tanımladım.
 
     useEffect(() => {
-        setPageSize(Math.ceil(length / DATA_LENGTH_PER_PAGE));
-    }, []);
+        setPageSize(Math.ceil(productDataCount / DATA_LENGTH_PER_PAGE));
+    }, [productDataCount]);
 
     const changePage = async (_, value) => {
         setLoading(true);
-        await dispatch(getProductList(value))
+
+     
+        dispatch(setFilterModel({
+            ...filterModel,
+            currentPage: value,
+        }));
+        
+        await dispatch(getProductList())
         setLoading(false);
     };
     return (
-        <Pagination className={className} onChange={changePage} count={pageSize} color="primary">
+    <div
+    >
+            <Pagination className={className} onChange={changePage} count={pageSize}
+            page={filterModel?.currentPage}
+            color="primary">
 
         </Pagination>
+    </div>
     )
 }
+
+//Gereksiz re-render'ın önüne geçiyoruz
+export default React.memo(PaginationComp)

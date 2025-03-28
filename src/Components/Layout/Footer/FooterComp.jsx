@@ -1,10 +1,9 @@
 import { ArrowBigDown, CaseLower } from 'lucide-solid';
-import './FooterStyles.css';
 import { Facebook, Instagram, Linkedin, Twitter } from 'lucide-react';
 
 export default function FooterComp() {
     return (
-        <div className="footer-bg mt-3 p-5 text-white flex flex-col md:flex-row justify-center items-center flex-wrap gap-5">
+        <div className="w-full bg-main mt-3 p-5 text-white flex flex-col md:flex-row justify-center items-center flex-wrap gap-5">
             <div className='w-full md:w-1/3 lg:w-1/4 text-center md:text-left'>
                 <h3 className='font-bold text-lg'>E-Commerce</h3>
                 <p className='mt-2'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce nibh massa, sollicitudin quis dictum sed, fringilla et ex.</p>

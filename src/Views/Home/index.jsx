@@ -20,7 +20,7 @@ export default function HomeIndex({ setLoading }) {
         //Bu component unmount vs. olursa hata alınabilir.
         const fecthData = async () => {
             setLoading(true);
-            await dispatch(getProductList()); //Loadingten dolayı mecburen bekletiyorum.
+            await dispatch(getProductList({currentPage : 1})); //Loadingten dolayı mecburen bekletiyorum.
             setLoading(false);
         }
         fecthData();
@@ -37,11 +37,11 @@ export default function HomeIndex({ setLoading }) {
                 </Breadcrumbs>
             </div>
             <div className="h-40 bg-linear-to-r  from-indigo-200 to-teal-100 
-            grid grid-cols-1 md:grid-cols-2 items-center justify-center">
+            grid grid-cols-1 md:grid-cols-2 items-center justify-center font-main">
                 <div className="text-4xl md:text-left text-center px-20">
                     Valorant Points
                 </div>
-                <div className=" flex flex-col items-center  max-w-84 mx-auto">
+                <div className="hidden sm:flex flex-col items-center  max-w-84 mx-auto">
                     <span className="text-2xl ">
                         Valorant VP Satın Al - Sonteklif
                     </span>

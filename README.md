@@ -1,12 +1,17 @@
-# React + Vite
+Projeyi Çalıştırmak İçin Yapılması Gerekenler
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Proje Git Url : https://github.com/sero392/HyperEComTask.git
 
-Currently, two official plugins are available:
+1.Adım : Visual Studio Code Editörünü Açıp Start Kısmındaki Clone Git Repository Tuşuna Basıyoruz.
+2.Adım : Yukarıdaki URL'i çıkan arama yerine yapıştırıyoruz. Projenin yükleneceği dosyayı seçiyoruz.
+3.Adım : Proje yüklendikten sonra terminali açıp cmd üzerinden aşağıdaki komutları çalıştırıyoruz
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Önemli Not : Bu komutlar proje ana dizininde çalışmalıdır.
 
-## Expanding the ESLint configuration
+1.komut : npm install
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Bu komut gerekli paketleri indirecektir.
+
+2.komut : npm run dev
+
+Bu komut projenin development yapılandırmalarıyla çalışmasını sağlayacaktır.

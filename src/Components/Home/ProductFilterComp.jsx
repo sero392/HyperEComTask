@@ -48,9 +48,9 @@ export default function ProductFilterComp({ setLoading }) {
     return (
         <div className="px-5 py-5 rounded-md border-2 border-gray-50 bg-white mt-3 mx-3 ">
             <SelectBoxComp
-                width=" w-[200px] lg:w-[300px] xl:w-[400px]"
+                width=" w-[250px] lg:w-[300px] xl:w-[400px]"
                 className="
-             w-[200px] lg:w-[300px] xl:w-[400px]
+             w-[250px] lg:w-[300px] xl:w-[400px]
             py-2 px-6 pr-10 rounded-lg
             appearance-none font-bold shadow-lg shadow-blue-400/50
             ring-2 ring-blue-50

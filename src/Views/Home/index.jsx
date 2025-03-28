@@ -3,8 +3,6 @@
 
 import { useEffect, useState } from "react";
 import HomePageComp from "../../Components/Home/HomePageComp";
-import { getData, postData } from "../../Api/ApiService";
-import ProductFilterComp from "../../Components/Home/ProductFilterComp";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductList } from "../../Features/ProductSlice";
 import { Breadcrumbs, Link, Typography } from "@mui/material";

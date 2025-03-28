@@ -4,11 +4,15 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { ChevronsDown } from "lucide-react";
 import { getData } from "../../Api/ApiService";
 import { DATA_LENGTH_PER_PAGE, GET_CATEGORY_URL, PRODUCT_DATA_LENGTH } from "../../Commons/Constants/Constants";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getProductList, setFilterModel, setProductDataCount } from "../../Features/ProductSlice";
+import useLocalize from "../../Commons/CustomHooks/LocalizeHooks";
 
 export default function ProductFilterComp({ setLoading }) {
     const dispatch = useDispatch();
+
+    const selectedLang = useSelector(state => state.global.selectedLang);
+    const str_please_select_category = useLocalize(selectedLang,'str_please_select_category');
 
     const [categoryList, setCategoryList] = useState([]);
 
@@ -55,12 +59,12 @@ export default function ProductFilterComp({ setLoading }) {
             appearance-none font-bold shadow-lg shadow-blue-400/50
             ring-2 ring-blue-50
              focus:outline-none focus:ring-4 focus:ring-blue-100 
-             focus:border-themeSecondaryColor"
+            "
                 onChange={(value) => changeCategory(value)}
                 optionList={[
                     {
                         Id: 0,
-                        Text: 'Lütfen Kategori Seçiniz'
+                        Text: str_please_select_category
                     },
                     ...categoryList
                 ]}

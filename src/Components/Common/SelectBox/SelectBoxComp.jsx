@@ -30,7 +30,7 @@ export default function SelectBoxComp({
   };
 
   return (
-    <div className={`relative ${width} mt-2`}>
+    <div className={width ? `relative ${width} mt-2` : ''}>
       <select
         className={`${className}`}
         value={selectedValue}

@@ -5,10 +5,13 @@ import { ShoppingCart } from "lucide-solid";
 import { BaggageClaim, ShoppingCartIcon, View } from "lucide-react";
 import { addBasketItem } from "../../Features/BasketSlice";
 import ProductFilterComp from "./ProductFilterComp";
+import useLocalize from "../../Commons/CustomHooks/LocalizeHooks";
 export default function HomePageComp({ setLoading }) {
     const dispatch = useDispatch();
     const products = useSelector((state) => state.product.products);
-
+    const selectedLang = useSelector(state => state.global.selectedLang);
+    const str_add_cart = useLocalize(selectedLang,'str_add_cart');
+    const str_view = useLocalize(selectedLang,'str_view');
     return (
         <>
             <ProductFilterComp setLoading={setLoading}></ProductFilterComp>
@@ -46,7 +49,7 @@ export default function HomePageComp({ setLoading }) {
                                                     >
                                                         <ShoppingCartIcon size={15}></ShoppingCartIcon>
                                                         <span className="ml-2">
-                                                            Sepete Ekle
+                                                           {str_add_cart}
                                                         </span>
                                                     </Button>
                                                     <Button
@@ -58,7 +61,7 @@ export default function HomePageComp({ setLoading }) {
                                                         fullWidth size="small" variant="contained" className="!mt-2">
                                                         <View size={15}></View>
                                                         <span className="ml-2">
-                                                            Gör
+                                                            {str_view}
                                                         </span>
                                                     </Button>
                                                 </div>
@@ -73,13 +76,13 @@ export default function HomePageComp({ setLoading }) {
                                                     <Button size="small" variant="contained" onClick={() => dispatch(addBasketItem(product))}>
                                                         <ShoppingCartIcon size={15}></ShoppingCartIcon>
                                                         <span className="ml-2">
-                                                            Sepete Ekle
+                                                         {str_add_cart}
                                                         </span>
                                                     </Button>
                                                     <Button size="small" variant="contained" className="!mt-2">
                                                         <View size={15}></View>
                                                         <span className="ml-2">
-                                                            Gör
+                                                        {str_view}
                                                         </span>
                                                     </Button>
                                                 </div>

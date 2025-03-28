@@ -2,11 +2,17 @@ import { Badge, Button, IconButton } from "@mui/material";
 import { CircleX, EyeClosed, ShoppingBag, Trash } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { clearBasket, removeBasketItem } from "../../../Features/BasketSlice";
+import useLocalize from "../../../Commons/CustomHooks/LocalizeHooks";
 
 export default function BasketComp() {
     const dispatch = useDispatch();
     const addedItems = useSelector(state => state.basket.basketItems);
-
+    const selectedLang = useSelector(state => state.global.selectedLang);
+    const str_payment = useLocalize(selectedLang,'str_payment');
+    const str_clear_basket = useLocalize(selectedLang,'str_clear_basket');
+    const str_total = useLocalize(selectedLang,'str_total');
+    const str_empty_basket = useLocalize(selectedLang,'str_empty_basket');
+    const str_please_add_item_to_basket = useLocalize(selectedLang,'str_please_add_item_to_basket');
     return (
         <div className="w-full h-full">
             <div className="flex flex-col justify-center w-full h-full ">
@@ -46,7 +52,7 @@ export default function BasketComp() {
                             <div className="mt-auto">
                                 <div className="flex justify-between items-center w-full p-3">
                                     <span className="text-md font-bold">
-                                        Toplam
+                                        {str_total}
                                     </span>
                                     <span className="text-md font-bold">
                                         {addedItems.reduce((acc, item) => acc + (item.marketPrice * item.Count), 0)?.toFixed(2)} TL
@@ -54,12 +60,12 @@ export default function BasketComp() {
                                 </div>
                                 <div className="flex justify-center items-center flex-wrap w-full p-3 gap-2">
                                     <Button className="!bg-blue-500 !text-white w-full md:w-1/3 ">
-                                        Ödeme
+                                        {str_payment}
                                         <ShoppingBag className="ml-2" size={15} />
                                     </Button>
                                     <Button className="!bg-red-500 !text-white w-full md:w-1/3"
                                         onClick={() => dispatch(clearBasket())}>
-                                        Sepeti Temizle
+                                       {str_clear_basket}
                                         <Trash className="ml-2" size={15} />
                                     </Button>
                                 </div>
@@ -70,10 +76,10 @@ export default function BasketComp() {
                         (
                             <div className="flex flex-col items-center justify-center w-full h-full">
                                 <span className="text-3xl font-bold">
-                                    Sepetiniz Boş
+                                    {str_empty_basket}
                                 </span>
                                 <span className="text-lg font-semibold mt-3">
-                                    Sepetinize Ürünler Ekleyiniz
+                                    {str_please_add_item_to_basket}
                                 </span>
                             </div>
                         )

@@ -1,0 +1,122 @@
+{
+    "success": true,
+    "message": "Dil Verileri Başarıyla Getirildi",
+    "data": [
+        {
+            "LanguageId": 0,
+            "LanguageName": "Türkçe",
+            "LanguageWords": [
+                {
+                    "LanguageKey": "str_your_orders",
+                    "LanguageValue": "Siparişler"
+                },
+                {
+                    "LanguageKey": "str_account",
+                    "LanguageValue": "Hesabım"
+                },
+                {
+                    "LanguageKey": "str_streamers",
+                    "LanguageValue": "Yayıncılar"
+                },
+                {
+                    "LanguageKey": "str_add_item_to_market_place",
+                    "LanguageValue": "Markete Ürün Ekle"
+                },
+                {
+                    "LanguageKey": "str_add_cart",
+                    "LanguageValue": "Sepete Ekle"
+                },
+                {
+                    "LanguageKey": "str_view",
+                    "LanguageValue": "Gör"
+                },
+                {
+                    "LanguageKey": "str_payment",
+                    "LanguageValue": "Ödeme"
+                },
+                {
+                    "LanguageKey": "str_clear_basket",
+                    "LanguageValue": "Sepeti Temizle"
+                },
+                {
+                    "LanguageKey": "str_please_select_category",
+                    "LanguageValue": "Lütfen Kategori Seçiniz"
+                },
+                {
+                    "LanguageKey": "str_search_for_product",
+                    "LanguageValue": "Ürünlerde Ara"
+                },
+                {
+                    "LanguageKey": "str_total",
+                    "LanguageValue": "Toplam"
+                },
+                {
+                    "LanguageKey": "str_empty_basket",
+                    "LanguageValue": "Sepetiniz Boş"
+                },
+                {
+                    "LanguageKey": "str_please_add_item_to_basket",
+                    "LanguageValue": " Sepetinize Ürünler Ekleyiniz"
+                }
+            ]
+        },
+        {
+            "LanguageId": 1,
+            "LanguageName": "Ingilizce",
+            "LanguageWords": [
+                {
+                    "LanguageKey": "str_your_orders",
+                    "LanguageValue": "Orders"
+                },
+                {
+                    "LanguageKey": "str_account",
+                    "LanguageValue": "Account"
+                },
+                {
+                    "LanguageKey": "str_streamers",
+                    "LanguageValue": "Streamers"
+                },
+                {
+                    "LanguageKey": "str_add_item_to_market_place",
+                    "LanguageValue": "Add Item To Market"
+                },
+                {
+                    "LanguageKey": "str_add_cart",
+                    "LanguageValue": "Add To Cart"
+                },
+                {
+                    "LanguageKey": "str_view",
+                    "LanguageValue": "View"
+                },
+                {
+                    "LanguageKey": "str_payment",
+                    "LanguageValue": "Payment"
+                },
+                {
+                    "LanguageKey": "str_clear_basket",
+                    "LanguageValue": "Clear Basket"
+                },
+                {
+                    "LanguageKey": "str_please_select_category",
+                    "LanguageValue": "Please Select Category"
+                },
+                {
+                    "LanguageKey": "str_search_for_product",
+                    "LanguageValue": "Search For Product"
+                },
+                {
+                    "LanguageKey": "str_total",
+                    "LanguageValue": "Total"
+                },
+                {
+                    "LanguageKey": "str_empty_basket",
+                    "LanguageValue": "Empty Basket"
+                },
+                {
+                    "LanguageKey": "str_please_add_item_to_basket",
+                    "LanguageValue": "Please Add Product To Your Basket"
+                }
+            ]
+        }
+    ]
+}

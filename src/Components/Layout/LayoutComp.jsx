@@ -1,10 +1,11 @@
 import { AppBar, Backdrop, Box, CircularProgress, Drawer, styled, TextField, Toolbar } from "@mui/material";
 import FooterComp from "./Footer/FooterComp";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import HeaderComp from "./Header/HeaderComp";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleBasket } from "../../Features/BasketSlice";
 import BasketComp from "./Basket/BasketComp";
+import { getLanguageList } from "../../Features/GlobalSlice";
 
 
 
@@ -14,6 +15,10 @@ export default function LayoutComp({ Children }) {
 
     //Şimdilik loading buradan yönetiliyor başka sayfa gelirse redux'a alınabilir.
     const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        dispatch(getLanguageList());
+    },[dispatch])
     return (
         <div>
             <HeaderComp />

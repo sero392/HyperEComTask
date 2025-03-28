@@ -2,8 +2,6 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { postData } from '../Api/ApiService';
 import { DATA_LENGTH_PER_PAGE, GET_PRODUCT_URL, PRODUCT_DATA_LENGTH } from '../Commons/Constants/Constants';
 
-//Tek bir yerden url değiştirmek için buraya konuldu
-//Normalde env dosylarında saklanılabilir.
 
 export const getProductList = createAsyncThunk(
     "product/getProductList",
@@ -20,7 +18,7 @@ const productSlice = createSlice({
     name: 'product',
     initialState: {
         products: [],
-        status: null,
+        status: null,//Projede şuanda kullanılmıyor, gerekli görülürse silinmeli.
         filterModel: {
             currentPage: 1,
             productCategoryID: 0,

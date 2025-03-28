@@ -13,6 +13,9 @@ const api = axios.create({
       .get(endpoint)
       .then((response) => {
         
+        //Bu kısımda global error handling yapılabilir.
+        //Normalde projelerimde ayrı bir fonksiyon ile tek bir yerden
+        //Hata yönetimi yapıp ilgili mesajı ekranda gösteriyorum
         response?.data?.success ? null : console.error(response?.data?.message);
 
         return response?.data || response;

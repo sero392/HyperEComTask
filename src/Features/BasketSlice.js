@@ -10,6 +10,7 @@ const basketSlice = createSlice({
             state.isBasketOpen = true;
             state.basketItems.push(action.payload);
         },
+        //Arayüzde kullanmadım fakat metodunu hazırladım.
         removeBasketItem: (state, action) => {
             state.basketItems = state.basketItems.filter(item => item.id !== action.payload.id);
         },
